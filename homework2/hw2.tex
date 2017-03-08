@@ -1,0 +1,57 @@
+\documentclass[10pt]{article}
+\usepackage[latin1]{inputenc}
+\usepackage[english]{babel}
+\usepackage{fancyvrb}
+\usepackage[a4paper,margin=2cm]{geometry}
+\usepackage{titlesec}
+%\usepackage{macrosens}
+\usepackage{comment}
+\usepackage{mathpazo}
+\usepackage{ dsfont }
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{color}
+\usepackage{graphicx}
+
+
+%\setlength{\parindent}{0pt}
+\setlength{\parskip}{1ex}
+
+%\titleformat{ command }[ shape ]{ format }{ label }{ sep }{ before }[ after ]
+%\titleformat{\section}{\large\bfseries}{Exercise \thesection.}{1ex}{}
+%\titlespacing{\subsection}{0pt}{*2}{*1}
+
+\renewcommand{\thesubsection}{\arabic{subsection}}
+
+\titleformat{\subsection}[runin]{\normalsize\bfseries}{Q\thesubsection.}{1ex}{}
+\titlespacing{\subsection}{0pt}{*2}{*1}
+
+\specialcomment{correction}
+{\begin{quote}
+    \begin{em}
+      \begin{tabular}{|p{\linewidth}|}\hline
+      }{
+        \\\hline
+      \end{tabular}
+    \end{em}
+  \end{quote}
+}
+
+\newcommand{\smallcorr}[1]{\hfill\emph{\begin{tabular}[c]{|l|}\hline #1\\\hline\end{tabular}}}
+% 2 lines below to comment to get the correction
+\renewcommand{\smallcorr}[1]{}
+\excludecomment{correction}
+
+\begin{document}
+
+\pagestyle{empty}
+
+\noindent
+\textbf{IST Austria} \hfill %\textbf{Polytech Grenoble} \\
+\textbf{Numerical Algorithms} \hfill \textbf{Spring 2017}
+
+
+
+\input{hw2-body}
+
+\end{document}

@@ -1,0 +1,180 @@
+
+
+\lstset{
+  language=Algo,
+  basicstyle=\sffamily,
+  columns=fullflexible,
+  mathescape
+}
+
+\begin{center}
+{\large\textbf{Homework 1: numerics and error analysis}}\\
+Due Monday, March 6.
+\end{center}
+
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.6pt}}
+ 
+\section{Instructions}
+
+\begin{itemize}
+\item The first three exercises are designed to review basic mathematics that we will be using for the rest of the course. It is strongly recommended to read the chapter 1 of the textbook an make sure you have a good grasp on the knowledge and techniques described there.
+\item The assignments must be dropped off in the T.A. mail box: Office Building West, 2nd floor, left of the stairs, top-left box (Camille Schreck). The deadline is Monday, March 6 at midnight. 
+\item The assignments may be handwritten or typed. You can code in any programming language. The code itself will not be review. 
+\item The textbook is \emph{Numerical Algorithms} from Justin Solomon.\\ \url{https://people.csail.mit.edu/jsolomon/share/book/numerical_book.pdf}.
+\end{itemize}
+
+
+
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.6pt}}
+
+\section{Exercise 1: matrices \normalsize \textnormal(10 points)}
+
+Suppose the rows of $A \in \mathds{R}^{m \times n}$ are given by the transposes of $\vec{r}_1, \hdots , \vec{r}_m \in  \mathds{R}^n$ and
+the columns of $A \in \mathds{R}^{m \times n}$ are given by  $\vec{c}_1, \hdots , \vec{c}_n \in  \mathds{R}^m$. That is,
+$$ A =
+\left(\begin{matrix}
+  - & \vec{r}_1^\top & - \\
+   & \vdots &  \\
+  - & \vec{r}_m^\top & -
+\end{matrix} \right) =
+\left(\begin{matrix}
+  | &  & | \\
+ \vec{c}_1 & \hdots &   \vec{c}_n\\
+  | &  & |
+\end{matrix} \right)
+$$
+
+Give expressions for the elements of $A^\top A$ and $AA^\top$ in terms of these vectors.
+
+
+\begin{correction}
+$$ A^\top = \left(\begin{matrix}
+  | &  & | \\
+ \vec{r}_1 & \hdots &   \vec{r}_m\\
+  | &  & |
+  \end{matrix} \right)
+  =
+  \left(\begin{matrix}
+  - & \vec{c}_1^\top & - \\
+   & \vdots &  \\
+  - & \vec{c}_n^\top & -
+  \end{matrix} \right)$$
+  So,
+$$A^\top A =   \left(\begin{matrix}
+  - & \vec{c}_1^\top & - \\
+   & \vdots &  \\
+  - & \vec{c}_n^\top & -
+  \end{matrix} \right) \cdot
+  \left(\begin{matrix}
+  | &  & | \\
+ \vec{c}_1 & \hdots &   \vec{c}_n\\
+  | &  & |
+  \end{matrix} \right) =  \left( \begin{matrix} \vec{c}_1 \cdot \vec{c}_1 & \hdots & \vec{c}_1 \cdot \vec{c}_n \\
+    \vdots & & \vdots \\
+    \vec{c}_n \cdot \vec{c}_1 & \hdots & \vec{c}_n \cdot \vec{c}_n \\
+    \end{matrix} \right)
+  \text{.}$$
+$A^\top A$ is a matrix of size $n \times n$ and each element $(A^\top A)_{i, j} = c_i \cdot c_j$.
+  $$AA^\top = \left(\begin{matrix}
+  - & \vec{r}_1^\top & - \\
+   & \vdots &  \\
+  - & \vec{r}_m^\top & -
+  \end{matrix} \right) \cdot
+  \left(\begin{matrix}
+  | &  & | \\
+ \vec{r}_1 & \hdots &   \vec{r}_m\\
+  | &  & |
+  \end{matrix} \right) =  \left( \begin{matrix} \vec{r}_1 \cdot \vec{r}_1 & \hdots & \vec{r}_1 \cdot \vec{r}_m \\
+    \vdots & & \vdots \\
+    \vec{r}_m \cdot \vec{r}_1 & \hdots & \vec{r}_m \cdot \vec{r}_m \\
+    \end{matrix} \right)
+  $$ 
+  $AA^\top$ is a matrix of size $m \times m$ and each element $(AA^\top)_{i, j} = r_i \cdot r_j$.  
+\end{correction}
+
+
+\section{Exercise 2: optimization  \normalsize \textnormal(25 points)} 
+
+\begin{itemize}
+\item[(1)] Give a linear system of equations satisfied by minima of the energy $f(\vec{x}) = ||A\vec{x}-\vec{b}||_2$ with respect to $\vec{x}$, for $\vec{x} \in \mathds{R}^n$, $A \in \mathds{R}^{m \times n}$, and $\vec{b} \in \mathds{R}^m$.
+\begin{correction}
+     The critical points of $f(\vec{x})$ are reached for $\frac{\partial f}{\partial \vec{x}} = 0$.\newline
+    \newline
+    If $Ax - b = 0$ the the critical points are the solutions of this system.\newline
+    \newline
+    In the other cases, we need to compute $\frac{\partial f}{\partial \vec{x}}$. \\
+    Let $g(\vec{u}) = ||\vec{u}||_2$. Then $\frac{\partial g}{\partial \vec{u}} = \frac{\vec{u}}{||u||_2}^\top$ for $\vec{u} \neq \vec{0}$. \\
+    And let $\vec{u}(\vec{x}) = A\vec{x} - \vec{b}$. Then $\frac{\partial \vec{u}}{\partial \vec{x}} = A$.\\
+    So $f(\vec{x}) = g(\vec{u}(\vec{x}))$ and
+    $$ \frac{\partial f}{\partial \vec{x}} = \frac{\partial g}{\partial \vec{u}} \frac{\partial \vec{u}}{\partial \vec{x}} = (A\vec{x} + \vec{b})A = \left(A^\top(A\vec{x} - \vec{b})\right)^\top \text{.}$$
+    So critical points of $f$ satisfy $A^\top (A\vec{x}  -\vec{b}) = \vec{0}$. \newline 
+    \newline
+    In both case minima of energy satisfy $A^\top A\vec{x} = A^\top\vec{b}$.  
+\end{correction}
+ 
+\item[(2)] Fix some vector $\vec{a}\in \mathds{R}^n\backslash \{\vec{0}\}$ and define $f(\vec{x}) = \vec{a} \cdot \vec{x}$. Give an expression for the maximum of $f(\vec{x})$ subject to $||\vec{x}||_2 = 1$.
+  \begin{correction}
+    Let's define $\Lambda(\vec{x}, \lambda) = f(\vec{x}) - \lambda(||\vec{x}||_2 - 1)$.
+    $$\frac{\partial \Lambda}{\partial \vec{x}} = \vec{a} - \lambda \frac{\vec{x}}{||\vec{x}||_2} \text{\hspace{1cm} and \hspace{1cm}} \frac{\partial \Lambda}{\partial \lambda} = ||\vec{x}||_2 - 1 \text{.}$$
+    Critical points of $\Lambda$ then satisfied $\vec{a} = \lambda \frac{\vec{x}}{||\vec{x}||_2}$ and $||\vec{x}||_2 = 1$.
+    By combining these two conditions we obtain $\vec{a} = \lambda \vec{x}$. So $\lambda = \pm ||\vec{a}||_2$ and then the critical points are: 
+    $$\vec{x}_{c_1} = \frac{\vec{a}}{||\vec{a}||_2} \text{\hspace{0.4cm} and \hspace{0.4cm}} \vec{x}_{c_2} = -\frac{\vec{a}}{||\vec{a}||_2}\text{.}$$
+    So the maximum of $f(\vec{x})$ subject to $||\vec{x}||_2 = 1$ if obtained for $\vec{x}_{c_1} = \frac{\vec{a}}{||\vec{a}||_2}$ and $f(\vec{x}_{c_1}) = ||\vec{a}||_2$.
+\end{correction}
+
+\end{itemize}
+
+
+\section{Exercise 3: idempotent matrices  \normalsize \textnormal(15 points)}
+
+A matrix  $A \in \mathds{R}^{n \times n}$ is idempotent if it satisfies $A^2 = A$.
+
+\begin{itemize}
+\item[(1)] Suppose $B \in \mathds{R}^{m \times k}$ is constructed so that $B^\top B$ is invertible. Show that the matrix $B(B^\top B)^{-1} B^\top$ is idempotent.
+
+  \begin{correction}
+$$(B(B^\top B)^{-1} B^\top)^2 = (B(B^\top B)^{-1} B^\top)(B(B^\top B)^{-1} B^\top) $$
+$$= B(B^\top B)^{-1} (B^\top B)(B^\top B)^{-1} B^\top$$
+$$              =  B I_{k \times k}(B^\top B)^{-1} B^\top$$
+$$= B(B^\top B)^{-1} B^\top$$
+\end{correction}
+\item[(2)] If $A$ is idempotent, show that $I_{n\times n} - A$ is also idempotent.
+ \begin{correction}
+\begin{multline*}
+ (I_{n\times n} - A)^2 = I_{n\times n}^2 - 2I_{n\times n}A + A^2 = I_{n\times n} - 2A + A = I_{n\times n} - A
+      \end{multline*}                             
+\end{correction}
+
+\item[(3)] If $A$ is idempotent, show that $\frac{1}{2} I_{n\times n} - A$ is invertible and give an expression for its inverse.
+\begin{correction}
+\begin{multline*}
+ (\frac{1}{2}I_{n\times n} - A)^2 = \frac{1}{4}I_{n\times n}^2 - 2\frac{1}{2}I_{n\times n}A + A^2 = \frac{1}{4}I_{n\times n} - A + A = \frac{1}{4}I_{n\times n}
+      \end{multline*}
+      So $\frac{1}{2}I_{n\times n} - A$ is invertible and its inverse is $4(\frac{1}{2}I_{n\times n} - A) = 2I_{n\times n} - 4A$.
+\end{correction}
+\item[(4)] Suppose $A$ is idempotent and that we are given $\vec{x} \neq \vec{0}$ and $\lambda \in  \mathds{R}$ satisfying $A\vec{x} = \lambda\vec{x}$. Show that $\lambda \in \{0, 1\}$.
+   \begin{correction}
+   If $A\vec{x} = \lambda\vec{x}$ then
+   $$A^2\vec{x} = \lambda A\vec{x}$$
+   $$A\vec{x} = \lambda A\vec{x}$$
+   $$\lambda\vec{x}  = \lambda^2\vec{x}$$
+   So $\lambda = \lambda^2$ which means that $\lambda \in \{0, 1\}$.
+\end{correction}   
+\end{itemize}
+
+\section{Exercise 4: Sum Bad Pi  \normalsize \textnormal(50 points)}
+
+One of the lousier ways to compute $\pi$ is by using the Gregory series
+$$ G_n = 4 \sum_{k=1}^n\frac{(-1)^{k-1}}{2k-1} \xrightarrow{n\to \infty} \pi = 3.14159265358979323846264338327950288419716939937510582\hdots$$
+Its convergence is slow and, well, unusual. In this question, you will explore how many correct digits can you compute of $\pi$ using this formula --the matching digits may not all be contiguous!
+
+\begin{itemize}
+\item[(1)] Write a simple program, using double-precision floating point arithmetic, that computes $G_n$. Evaluate $G_n$ for $n = 10000, 100000, 1000000$ and $5000000$. Compare your results to $\pi$. How many digits match?
+\item[(2)] Next,  implement  the  more  careful  Kahan  Sum  algorithm  from  the  textbook (\textsection 2.3.2), and compare your results for the $n$ values used previously. How many digits match?
+\item[(3)]One might be bothered by the alternating nature of this series.  Consider the modified non-alternating series where each term is a positive number,
+$$ G_n = 4 \sum_{k=1\text{, $k$ odd}}^n\left(\frac{1}{2k-1} - \frac{1}{2(k+1)-1}\right) = 2\sum_{k=1\text{, $k$ odd}}^n\frac{1}{(k - \frac{1}{2})(k + \frac{1}{2})} \text{\hspace{2cm}($n$ even)}.$$  
+  Compare your results for this summation (with/without Kahan Sum) to the previous values. Is this approach better or worse? Why ?
+\item[(4)] Plot the output of two methods and compare them.
+\end{itemize}
+
+
