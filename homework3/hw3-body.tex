@@ -8,8 +8,8 @@
 %}
 
 \begin{center}
-{\large\textbf{Homework 2: Linear systems}}\\
-Due Wednesday, March 15.
+{\large\textbf{Homework 3: Optimization}}\\
+Due Wednesday, March 22.
 \end{center}
 
 \noindent\makebox[\linewidth]{\rule{\linewidth}{0.6pt}}
@@ -17,20 +17,46 @@ Due Wednesday, March 15.
 \section*{Instructions}
 
 \begin{itemize}
-\item The assignments must be dropped off in the T.A. mail box: Office Building West, 2nd floor, left of the stairs, top-left box (Camille Schreck), or sent to me by email. The deadline is March 14  at midnight.
+\item The assignments must be dropped off in the T.A. mail box: Office Building West, 2nd floor, left of the stairs, top-left box (Camille Schreck), or sent to me by email. The deadline is March 22  at midnight.
 \item The assignments may be handwritten or typed. You can code in any programming language. The code itself will not be reviewed. 
-\item The textbook is \emph{Numerical Algorithms} from Justin Solomon.\\ \url{https://people.csail.mit.edu/jsolomon/share/book/numerical_book.pdf}.
-\item The textbook do not talk about Jacobi and Gauss-Seidel methods. You can also look up the Wikipedia pages on the subject if you need more details.\\
-  \url{https://en.wikipedia.org/wiki/Jacobi's_method}\\
-  \url{https://en.wikipedia.org/wiki/Gauss-Seidel_method}
-  
+\item The textbook is \emph{Numerical Algorithms} from Justin Solomon.\\ \url{https://people.csail.mit.edu/jsolomon/share/book/numerical_book.pdf}.  
 \end{itemize}
 
 
 
 \noindent\makebox[\linewidth]{\rule{\linewidth}{0.6pt}}
 
-\section*{Exercise 1: Condition number and eigenvalues \normalsize \textnormal(50 points)}
+\section*{Exercise 1:  Fixed point iteration \normalsize \textnormal(xx points)}
+
+In this exercise, we wish to find $x^*$ satisfying $g(x^*) = x^*$. $x^*$ is a fixed point of $g$. Solving this system is equivalent to finding the roots of $g(x) - x$, but the system $g(x) = x$ suggests another potential method:\\
+(1) Take an initial guess $x_0$.\\
+(2) Iterate $x_k = g(x_{k-1})$ until $E_k = g(x_k) - x_k < \varepsilon$. 
+
+\subsection{} Assuming $g$ is Lipschitz with constant $c$, show that this iteration converges if $0 \leq c < 1$. What is the convergence rate ?
+
+\subsection{} Prove that if $g$ is Lipschitz with constant $0 \leq c < 1$ in a neighborhood $[x^* - \delta, x^* + \delta]$, then so long as $x_0$ is chosen in this interval, fixed point iteration will converge.
+
+\subsection{} Suppose $g$ is differentiable with $g_0(x^*) = 0$. Show that in this case, the fixed point iteration has quadratic convergence.\newline
+\newline
+\emph{\textbf{Definition:} A function $f$ is Lipschitz continuous if there exists a constant $c$ such that $|f(x) - f(y)| \leq c|x - y|$.} 
 
 \begin{correction}
 \end{correction}
+
+
+\section*{Exercise 2: Shape matching\normalsize \textnormal(xx points)}
+
+Given two sets of points $\{{\bf x}_i\}_{i = 1\hdots n}$ and $\{{\bf y}_i\}_{i = 1\hdots n}$, we want to find the best rigid transformation that match the ${\bf x}_i$ to the points ${\bf y}_i$. We consider that the rigid transformation is composed of a translation of vector ${\bf t}$ and followed by a rotation of matrix ${\bf R}$.
+
+\subsection{} Formulate the optimization problem for finding the best ${\bf t}$ and ${\bf R}$ in the least square sens. What are the constraints on ${\bf R}$ ?
+
+\subsection{} Let's fix for know the matrix ${\bf R}$. Show that the optimal translation vector ${\bf t}$ is vector between the barycenters of the two sets of points.
+
+\subsection{} We are now looking for the optimal rotation matrix ${\bf R}$. Propose a unconstraint minimization problem using Lagrange multiplier method. 
+\subsection{} Find a system of equations verified by ${\bf R}$.
+
+\subsection{} Considering the  matrix ${\bf R}$ (of dimension $3 \times 3$) as a vector ${\bf r}$ of dimension 9, re-write the equation of the previous question and propose an analytical solution for ${\bf r}$.
+
+\section*{Exercise 3: Newton's method \normalsize \textnormal(xx points)}
+
+\subsection{} 
