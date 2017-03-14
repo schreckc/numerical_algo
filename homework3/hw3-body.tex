@@ -17,7 +17,7 @@ Due Wednesday, March 22.
 \section*{Instructions}
 
 \begin{itemize}
-\item The assignments must be dropped off in the T.A. mail box: Office Building West, 2nd floor, left of the stairs, top-left box (Camille Schreck), or sent to me by email. The deadline is March 22  at midnight.
+\item The assignments must be dropped off in the T.A. mail box: Office Building West, 2nd floor, left of the stairs, top-left box, or sent to me by email. The deadline is March 22  at midnight.
 \item The assignments may be handwritten or typed. You can code in any programming language. The code itself will not be reviewed. 
 \item The textbook is \emph{Numerical Algorithms} from Justin Solomon.\\ \url{https://people.csail.mit.edu/jsolomon/share/book/numerical_book.pdf}.  
 \end{itemize}
@@ -36,7 +36,7 @@ In this exercise, we wish to find $x^*$ satisfying $g(x^*) = x^*$. $x^*$ is a fi
 
 \subsection{} Prove that if $g$ is Lipschitz with constant $0 \leq c < 1$ in a neighborhood $[x^* - \delta, x^* + \delta]$, then so long as $x_0$ is chosen in this interval, fixed point iteration will converge.
 
-\subsection{} Suppose $g$ is differentiable with $g_0(x^*) = 0$. Show that in this case, the fixed point iteration has quadratic convergence.\newline
+\subsection{} Suppose $g$ is differentiable with $g'(x^*) = 0$. Show that in this case, the fixed point iteration has quadratic convergence.\newline
 \newline
 \emph{\textbf{Definition:} A function $f$ is Lipschitz continuous if there exists a constant $c$ such that $|f(x) - f(y)| \leq c|x - y|$.} 
 
@@ -48,15 +48,19 @@ In this exercise, we wish to find $x^*$ satisfying $g(x^*) = x^*$. $x^*$ is a fi
 
 Given two sets of points $\{{\bf x}_i\}_{i = 1\hdots n}$ and $\{{\bf y}_i\}_{i = 1\hdots n}$, we want to find the best rigid transformation that match the ${\bf x}_i$ to the points ${\bf y}_i$. We consider that the rigid transformation is composed of a translation of vector ${\bf t}$ and followed by a rotation of matrix ${\bf R}$.
 
-\subsection{} Formulate the optimization problem for finding the best ${\bf t}$ and ${\bf R}$ in the least square sens. What are the constraints on ${\bf R}$ ?
+\subsection{} Formulate the optimization problem for finding the best ${\bf t}$ and ${\bf R}$ in the least square sense. What are the constraints on ${\bf R}$ ?
 
 \subsection{} Let's fix for know the matrix ${\bf R}$. Show that the optimal translation vector ${\bf t}$ is vector between the barycenters of the two sets of points.
 
-\subsection{} We are now looking for the optimal rotation matrix ${\bf R}$. Propose a unconstraint minimization problem using Lagrange multiplier method. 
-\subsection{} Find a system of equations verified by ${\bf R}$.
+\subsection{} We are now looking for the optimal rotation matrix ${\bf R}$. Propose an unconstrained minimization problem using Lagrange multiplier method. 
+\subsection{} Find a system of equations to solve to find the optimal ${\bf R}$.
 
-\subsection{} Considering the  matrix ${\bf R}$ (of dimension $3 \times 3$) as a vector ${\bf r}$ of dimension 9, re-write the equation of the previous question and propose an analytical solution for ${\bf r}$.
+\subsection{} \emph{\textbf{Bonus:}} Considering the  matrix ${\bf R}$ (of dimension $3 \times 3$) as a vector ${\bf r}$ of dimension 9, re-write the equation of the previous question and propose an analytical solution for ${\bf r}$.
 
 \section*{Exercise 3: Newton's method \normalsize \textnormal(xx points)}
 
-\subsection{} 
+\subsection{} Write an algorithm for implementing $Sqrt(x) = \sqrt{x}$ using only basic arithmetic operations ($+$,$-$,$*$,/) and loops, and plot the results for $x=0 \hdots 10$.
+\subsection{} The square root of a matrix ${\bf A}$ is any matrix ${\bf S}$ such that ${\bf S}*{\bf S}={\bf A}$. How would you generalize your 1-dimensional square root algorithm to compute the square root of an nxn matrix? Describe the complexity and stability of the algorithm.
+
+\emph{\textbf{Bonus:}} Is the solution unique? If so, explain why. If not, give a counter-example.
+
