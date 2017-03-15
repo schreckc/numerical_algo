@@ -26,7 +26,7 @@ Due Wednesday, March 22.
 
 \noindent\makebox[\linewidth]{\rule{\linewidth}{0.6pt}}
 
-\section*{Exercise 1:  Fixed point iteration \normalsize \textnormal(xx points)}
+\section*{Exercise 1:  Fixed point iteration \normalsize \textnormal(25 points)}
 
 In this exercise, we wish to find $x^*$ satisfying $g(x^*) = x^*$. $x^*$ is a fixed point of $g$. Solving this system is equivalent to finding the roots of $g(x) - x$, but the system $g(x) = x$ suggests another potential method:\\
 (1) Take an initial guess $x_0$.\\
@@ -44,20 +44,21 @@ In this exercise, we wish to find $x^*$ satisfying $g(x^*) = x^*$. $x^*$ is a fi
 \end{correction}
 
 
-\section*{Exercise 2: Shape matching\normalsize \textnormal(xx points)}
+\section*{Exercise 2: Shape matching\normalsize \textnormal(25 points)}
 
-Given two sets of points $\{{\bf x}_i\}_{i = 1\hdots n}$ and $\{{\bf y}_i\}_{i = 1\hdots n}$, we want to find the best rigid transformation that match the ${\bf x}_i$ to the points ${\bf y}_i$. We consider that the rigid transformation is composed of a translation of vector ${\bf t}$ and followed by a rotation of matrix ${\bf R}$.
+Given two sets of points $\{{\bf x}_i\}_{i = 1\hdots n}$ and $\{{\bf y}_i\}_{i = 1\hdots n}$, we want to find the best rigid transformation that match the ${\bf x}_i$ to the points ${\bf y}_i$. %We consider that the rigid transformation is composed of a translation of vector ${\bf t}$ and followed by a rotation of matrix ${\bf R}$.
 
-\subsection{} Formulate the optimization problem for finding the best ${\bf t}$ and ${\bf R}$ in the least square sense. What are the constraints on ${\bf R}$ ?
+\subsection{} The set $\{{\bf x}_i\}$ is centered around a point ${\bf u}$ and the set $\{{\bf y}_i\}$ is centered around a point ${\bf v}$. We consider that the rigid transformation is composed of a translation between ${\bf u}$ and ${\bf v}$ and followed by a rotation of matrix ${\bf R}$ around ${\bf v}$.
+Formulate the optimization problem for finding the best ${\bf u}$, ${\bf v}$ and ${\bf R}$ in the least square sense. What are the constraints on ${\bf R}$ ?
 
-\subsection{} Let's fix for know the matrix ${\bf R}$. Show that the optimal translation vector ${\bf t}$ is vector between the barycenters of the two sets of points.
+\subsection{} Let's fix for know the matrix ${\bf R}$. Show that the optimal ${\bf u}$ and ${\bf v}$ are the barycenters of the two sets of points.
 
 \subsection{} We are now looking for the optimal rotation matrix ${\bf R}$. Propose an unconstrained minimization problem using Lagrange multiplier method. 
 \subsection{} Find a system of equations to solve to find the optimal ${\bf R}$.
 
 \subsection{} \emph{\textbf{Bonus:}} Considering the  matrix ${\bf R}$ (of dimension $3 \times 3$) as a vector ${\bf r}$ of dimension 9, re-write the equation of the previous question and propose an analytical solution for ${\bf r}$.
 
-\section*{Exercise 3: Newton's method \normalsize \textnormal(xx points)}
+\section*{Exercise 3: Square root \normalsize \textnormal(50 points)}
 
 \subsection{} Write an algorithm for implementing $Sqrt(x) = \sqrt{x}$ using only basic arithmetic operations ($+$,$-$,$*$,/) and loops, and plot the results for $x=0 \hdots 10$.
 \subsection{} The square root of a matrix ${\bf A}$ is any matrix ${\bf S}$ such that ${\bf S}*{\bf S}={\bf A}$. How would you generalize your 1-dimensional square root algorithm to compute the square root of an nxn matrix? Describe the complexity and stability of the algorithm.
