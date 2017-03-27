@@ -105,8 +105,15 @@ We consider that a spring of stiffness $k$, of length at rest $l_0$ and current 
 \subsection{1D spring} Let's consider the case of a vertical spring attached at one side to a fixed point at the other to the mass $m$. The position of the fixed point is $z = 0$ and the position of the mass at time $t$ is $z = z(t)$. Let's ignore for know the gravity. Using Newton's second law and forward Euler, write a programme computing the position of the mass through time according taking in entry the length at rest $l_0$ and stiffness $k$ of the spring, the value of the mass $m$, the inital position $z_0$ and $v_0$ of the mass, and a time step $h$.
 
 In what range should one choose $h$ for the method to be stable ?
-Plot $z(t)$ for $k = $, $m = $, $l_0 = 10cm$, $z_0 = 12cm$ and $v_0$ for a stable time step and an unstable one.
+Plot $z(t)$ for $k = 1$, $m = 0.1$, $l_0 = 10cm$, $z_0 = 12cm$ and $v_0 = 0$ for a stable time step and an unstable one.
 
 Modify now the method to use backward Euler. Plot $z(t)$ for the same time steps used at the previous question.
 
 \subsection{Gravity} Let's consider now that the gravity also applies a force $\vec{G} = - m g \vec{z}$ where $\vec{z}$ is the up direction and $g = 9.81m.s^{-2}$. Plot the position $z(t)$ and see at which lenght of the spring the system reach a stable position. Is this corresponding to the theoretical stable position ?
+
+\subsection{} \textbf{Bonus:} Implement a program enabling to visualize the spring and mass. Transpose your program in 2D or 3D. Implement a grid or a string of mass-spring. Program user-interactions such that you can move or fix any mass.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.4\textwidth]{springs.png}
+\end{figure}
