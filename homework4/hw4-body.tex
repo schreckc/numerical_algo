@@ -37,19 +37,19 @@ $$\vec{y}_{k+1} \approx \vec{y}_k + h\frac{F(\vec{y}_{k+1}) + F(\vec{y}_k)}{2}$$
 
 This ODE integrator is called the \emph{trapezoidal method}.
 
-\subsection{} What can you say about the accuracy of this method ?
+\subsection{} Derive the accuracy of this method ?
 
 \subsection{} Using the model equation $y' = ay$, with $a < 0$, analyse the stability of the method.
 
-\subsection{} Despite its higher order of accuracy with maintained stability, the trapezoid method has some drawbacks that make it less popular than backward Euler for large time steps. Let's consider the ratio $R = \frac{y_{k+1}}{y_k}$. What is the value of $R$ when the time step $h \to \infty$. What does it say about the behaviour of the solution obtained with the trapezoidal method.
+\subsection{} Despite its higher order of accuracy with maintained stability, the trapezoid method has some drawbacks that make it less popular than backward Euler for large time steps. Let's consider the ratio $R = \frac{y_{k+1}}{y_k}$. What is the value of $R$ when the time step $h \to \infty$. What does it say about the behaviour of the solution obtained with the trapezoidal method ?
 
-\subsection{} The trapezoidal method is an implicit integrator. Use an Euler step to approcimate $F(\vec{y}_{k+1})$ and derive an explicit method. This method is called Heun's method. Analyse the accuracy and stability of this method.
+\subsection{} \emph{\textbf{Bonus:}} The trapezoidal method is an implicit integrator. Use an Euler step to approximate $F(\vec{y}_{k+1})$ and derive an explicit method. This method is called Heun's method. Analyse the accuracy and stability of this method.
 
 \section*{Exercise 2: Verlet algorithm \normalsize \textnormal(5 points) \textit{(from the textbook)}}
 
 \subsection{} Suppose we wish to approximate solutions to $\vec{y}'' = F(\vec{y})$. Add together Taylor expansions for $\vec{y}(t + h)$ and $\vec{y}(t - h)$ to derive the \emph{Verlet algorithm} for predicting $\vec{y}_{k+1}$ from $\vec{y}_k$  and $\vec{y}_{k-1}$ , which induces $O(h^4)$ integration error in a single time step.
 
-15.4 p342\\
+%15.4 p342\\
 
 \section*{Exercise 3: Pendulum algorithm \normalsize \textnormal(20 points) \textit{(from the textbook)}}
 
@@ -62,7 +62,7 @@ $$E(t) = \frac{1}{2}(\theta')^2 - \cos \theta.$$
 
 \subsection{} Many ODE integrators drift away from the desired output as time progresses over larger periods. For instance, forward Euler can add energy to a system by overshooting, while backward Euler tends to damp out motion and remove energy. In many computer graphics applications, quality long-term behavior can be prioritized, since large-scale issues cause visual artifacts. The class of symplectic integrators is designed to avoid this issue.
 
-Denote $\omega = \theta'$. The symplectic Euler scheme makes a series of estimates $\theta_ 0$, $\theta_ 1$, $\theta_ 2$, $\theta_ 3$, $\hdots$ and $\omega_0$, $\omega_1$, $\omega_2$, $\omega_3$, $hdots$ at time $t = 0$, $h$, $2h$, $3h$, $\hdots$ using the following iteration:
+Denote $\omega = \theta'$. The symplectic Euler scheme makes a series of estimates $\theta_ 0$, $\theta_ 1$, $\theta_ 2$, $\theta_ 3$, $\hdots$ and $\omega_0$, $\omega_1$, $\omega_2$, $\omega_3$, $\hdots$ at time $t = 0$, $h$, $2h$, $3h$, $\hdots$ using the following iteration:
 $$\theta_{k+1} = \theta_k + h\omega_k$$
 $$\omega_{k+1} = \omega_k - h \sin \theta_{k+1}.$$
 Define
@@ -88,32 +88,51 @@ A
 
 \subsection{} If we define $E_k = \omega^2 + h\omega_k\theta_k + \theta^2$ , show that $E_{k+1} = E_k$ in the iteration from Q\ref{q}. In other words, $E_k$ is constant from time step to time step.
   
-15.7 p343
+%15.7 p343
  
 \section*{Exercise 4: Springs \normalsize \textnormal(50 points)}
 
 
-\begin{wrapfigure}{l}{0.2\textwidth}
+\begin{wrapfigure}{l}{0.3\textwidth}
   \centering
   \vspace{-0.5cm}
-\includegraphics[width=0.19\textwidth]{spring.png}
+\includegraphics[width=0.2\textwidth]{spring.png}
+\vspace{-1.5cm}
+\end{wrapfigure}
+
+We consider that a spring of stiffness $k$, of length at rest $l_0$ and current length $l$ attached to a small mass $m$ applies a force $\vec{F} = -k\frac{l - l_0}{l_0} \vec{d}$ where $\vec{d}$ is the normalized direction of the spring.
+
+\subsection{1D spring.} Let's consider the case of a vertical spring attached at one side to a fixed point at the other to the mass $m$. The position of the fixed point is $z = 0$ and the position of the mass at time $t$ is $z = z(t)$. Let's ignore for now the gravity.
+\begin{itemize}
+\item What is the first order ODE that need to be solved ? Write it in the form:
+  $$\left( \begin{matrix} z\\ v \end{matrix} \right) ' = A \left( \begin{matrix} z\\ v \end{matrix} \right) + b$$
+  where $v = z'$ is the velocity.
+\end{itemize}
+\hspace{1cm}
+\begin{itemize}
+\item Using Newton's second law and forward Euler, write a program computing the position of the mass through time taking in entry the length at rest $l_0$ and stiffness $k$ of the spring, the value of the mass $m$, the inital position $z_0$ and the inital velocity $v_0$, and a time step $h$.
+\item Let's take $k = 0.1 N.m^{-1}$, $m = 0.01kg$, $l_0 = 10cm$, $z_0 = 12cm$ and $v_0 = 0$. Find $h_{max}$ such that the method should be stable. Plot $z(t)$ for $h = \frac{h_{max}}{2}$.  \textit{You should have $h_{max} = 0.01s$.}
+\end{itemize}
+
+\subsection{Damping.}
+  \begin{itemize}
+\item The oscillations should get bigger and bigger. One way to solve this is to use some damping. Let's add a damping force $\vec{D} = -d\vec{v}$. Plot $z(t)$ for $h = \frac{h_{max}}{10}$ and  $d = 0.5$. What's wrong ? Let's know take $d = 0.01$ and plot it.
+  \item Another way to avoid this effect is to use an implcit method. Modify now the method to use backward Euler. Plot $z(t)$ (without damping).
+\end{itemize}
+
+
+\begin{wrapfigure}{r}{0.2\textwidth}
+  \centering
+  \vspace{-0.5cm}
+\includegraphics[width=0.19\textwidth]{springs.png}
 \vspace{-1cm}
 \end{wrapfigure}
 
-We consider that a spring of stiffness $k$, of length at rest $l_0$ and current length $l$ attached to a small mass $m$ applies a force $\vec{F} = k\frac{l - l_0}{l_0} \vec{d}$ where $\vec{d}$ is the normalized direction of the spring.
 
-\subsection{1D spring} Let's consider the case of a vertical spring attached at one side to a fixed point at the other to the mass $m$. The position of the fixed point is $z = 0$ and the position of the mass at time $t$ is $z = z(t)$. Let's ignore for know the gravity. Using Newton's second law and forward Euler, write a programme computing the position of the mass through time according taking in entry the length at rest $l_0$ and stiffness $k$ of the spring, the value of the mass $m$, the inital position $z_0$ and $v_0$ of the mass, and a time step $h$.
+\subsection{Gravity.} Let's consider now that the gravity also applies a force $\vec{G} = - m g \vec{z}$ where $\vec{z}$ is the up direction and $g = 9.81m.s^{-2}$. Plot the position $z(t)$ and see at which length of the spring the system reaches a stable position. Is this corresponding to the theoretical stable position ?
 
-In what range should one choose $h$ for the method to be stable ?
-Plot $z(t)$ for $k = 1$, $m = 0.1$, $l_0 = 10cm$, $z_0 = 12cm$ and $v_0 = 0$ for a stable time step and an unstable one.
+\subsection{} \textbf{\emph{Bonus:} A string of springs.} Implement a program enabling to visualize the spring and mass. Implement a string of mass-spring as shown on the figure. What is the length of each spring when the system reaches a stable position under gravity ?\\
+\emph{Note: This may take a lot of time if you want to use Backward Euler.}
+%
 
-Modify now the method to use backward Euler. Plot $z(t)$ for the same time steps used at the previous question.
-
-\subsection{Gravity} Let's consider now that the gravity also applies a force $\vec{G} = - m g \vec{z}$ where $\vec{z}$ is the up direction and $g = 9.81m.s^{-2}$. Plot the position $z(t)$ and see at which lenght of the spring the system reach a stable position. Is this corresponding to the theoretical stable position ?
-
-\subsection{} \textbf{Bonus:} Implement a program enabling to visualize the spring and mass. Transpose your program in 2D or 3D. Implement a grid or a string of mass-spring. Program user-interactions such that you can move or fix any mass.
-
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=0.4\textwidth]{springs.png}
-\end{figure}
+\subsection{} \textbf{\emph{Bonus if you're really bored this week-end:} 2D or 3D springs.} Transpose your program in 2D or 3D. Implement a grid or a string of mass-spring. Program user-interactions such that you can move or fix any mass. Play with it.
