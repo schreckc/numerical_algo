@@ -26,7 +26,7 @@ Due Wednesday,April 3.
 
 \noindent\makebox[\linewidth]{\rule{\linewidth}{0.6pt}}
 
-\section*{Exercise 1: Trapezoidal method \normalsize \textnormal(20 points)}
+\section*{Exercise 1: Trapezoidal method \normalsize \textnormal(25 points)}
 
 Let's $\vec{y}: \mathds{R} \rightarrow \mathds{R}^n$ be a function satisfying the ODE:
 $$\vec{y}'= F(\vec{y}), \vec{y}(0) = \vec{y}_0.$$
@@ -47,11 +47,11 @@ This ODE integrator is called the \emph{trapezoidal method}.
 
 \section*{Exercise 2: Verlet algorithm \normalsize \textnormal(5 points) \textit{(from the textbook)}}
 
-Suppose we wish to approximate solutions to $\vec{y}'' = F(\vec{y})$. Add together Taylor expansions for $\vec{y}(t + h)$ and $\vec{y}(t - h)$ to derive the \emph{Verlet algorithm} for predicting $\vec{y}_{k+1}$ from $\vec{y}_k$  and $\vec{y}_{k-1}$ , which induces $O(h^4)$ integration error in a single time step.
+\subsection{} Suppose we wish to approximate solutions to $\vec{y}'' = F(\vec{y})$. Add together Taylor expansions for $\vec{y}(t + h)$ and $\vec{y}(t - h)$ to derive the \emph{Verlet algorithm} for predicting $\vec{y}_{k+1}$ from $\vec{y}_k$  and $\vec{y}_{k-1}$ , which induces $O(h^4)$ integration error in a single time step.
 
 15.4 p342\\
 
-\section*{Exercise 2: Pendulum algorithm \normalsize \textnormal(25 points) \textit{(from the textbook)}}
+\section*{Exercise 3: Pendulum algorithm \normalsize \textnormal(20 points) \textit{(from the textbook)}}
 
 The swing angle $\theta$ of a pendulum under gravity satisfies the following ODE:
 $$\theta'' = -\sin \theta,$$
@@ -90,7 +90,23 @@ A
   
 15.7 p343
  
-\section*{Exercise 3: Springs \normalsize \textnormal(50 points)}
+\section*{Exercise 4: Springs \normalsize \textnormal(50 points)}
 
 
+\begin{wrapfigure}{l}{0.2\textwidth}
+  \centering
+  \vspace{-0.5cm}
+\includegraphics[width=0.19\textwidth]{spring.png}
+\vspace{-1cm}
+\end{wrapfigure}
 
+We consider that a spring of stiffness $k$, of length at rest $l_0$ and current length $l$ attached to a small mass $m$ applies a force $\vec{F} = k\frac{l - l_0}{l_0} \vec{d}$ where $\vec{d}$ is the normalized direction of the spring.
+
+\subsection{1D spring} Let's consider the case of a vertical spring attached at one side to a fixed point at the other to the mass $m$. The position of the fixed point is $z = 0$ and the position of the mass at time $t$ is $z = z(t)$. Let's ignore for know the gravity. Using Newton's second law and forward Euler, write a programme computing the position of the mass through time according taking in entry the length at rest $l_0$ and stiffness $k$ of the spring, the value of the mass $m$, the inital position $z_0$ and $v_0$ of the mass, and a time step $h$.
+
+In what range should one choose $h$ for the method to be stable ?
+Plot $z(t)$ for $k = $, $m = $, $l_0 = 10cm$, $z_0 = 12cm$ and $v_0$ for a stable time step and an unstable one.
+
+Modify now the method to use backward Euler. Plot $z(t)$ for the same time steps used at the previous question.
+
+\subsection{Gravity} Let's consider now that the gravity also applies a force $\vec{G} = - m g \vec{z}$ where $\vec{z}$ is the up direction and $g = 9.81m.s^{-2}$. Plot the position $z(t)$ and see at which lenght of the spring the system reach a stable position. Is this corresponding to the theoretical stable position ?
