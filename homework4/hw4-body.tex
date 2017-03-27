@@ -37,7 +37,7 @@ $$\vec{y}_{k+1} \approx \vec{y}_k + h\frac{F(\vec{y}_{k+1}) + F(\vec{y}_k)}{2}$$
 
 This ODE integrator is called the \emph{trapezoidal method}.
 
-\subsection{} Derive the accuracy of this method ?
+\subsection{} Derive the accuracy of this method.
 
 \subsection{} Using the model equation $y' = ay$, with $a < 0$, analyse the stability of the method.
 
@@ -100,24 +100,26 @@ A
 \vspace{-1.5cm}
 \end{wrapfigure}
 
-We consider that a spring of stiffness $k$, of length at rest $l_0$ and current length $l$ attached to a small mass $m$ applies a force $\vec{F} = -k\frac{l - l_0}{l_0} \vec{d}$ where $\vec{d}$ is the normalized direction of the spring.
+We consider that a spring of stiffness $k$, of length at rest $l_0$ and current length $l$ attached to a small mass $m$.
+The spring applies on the mass a force $\vec{F} = -k\frac{l - l_0}{l_0} \vec{d}$ where $\vec{d}$ is the normalized direction of the spring.
 
 \subsection{1D spring.} Let's consider the case of a vertical spring attached at one side to a fixed point at the other to the mass $m$. The position of the fixed point is $z = 0$ and the position of the mass at time $t$ is $z = z(t)$. Let's ignore for now the gravity.
 \begin{itemize}
-\item What is the first order ODE that need to be solved ? Write it in the form:
+\item Using Newton's second law, what is the first order ODE that need to be solved ? Write it in the form:
   $$\left( \begin{matrix} z\\ v \end{matrix} \right) ' = A \left( \begin{matrix} z\\ v \end{matrix} \right) + b$$
-  where $v = z'$ is the velocity.
+  where $v = z'$ is the velocity, $A$ a $2 \times 2$ matrix and $b$ a vector.
 \end{itemize}
 \hspace{1cm}
 \begin{itemize}
-\item Using Newton's second law and forward Euler, write a program computing the position of the mass through time taking in entry the length at rest $l_0$ and stiffness $k$ of the spring, the value of the mass $m$, the inital position $z_0$ and the inital velocity $v_0$, and a time step $h$.
-\item Let's take $k = 0.1 N.m^{-1}$, $m = 0.01kg$, $l_0 = 10cm$, $z_0 = 12cm$ and $v_0 = 0$. Find $h_{max}$ such that the method should be stable. Plot $z(t)$ for $h = \frac{h_{max}}{2}$.  \textit{You should have $h_{max} = 0.01s$.}
+\item Using forward Euler, write a program computing the position of the mass through time taking, in entry the length at rest $l_0$ and stiffness $k$ of the spring, the value of the mass $m$, the inital position $z_0$ and the inital velocity $v_0$, and a time step $h$.
+\item Let's take $k = 0.1$ \si{N.m^{-1}}, $m = 0.01$\si{kg}, $l_0 = 10$\si{cm}, $z_0 = 12$\si{cm} and $v_0 = 0$. Find $h_{max}$ such that the method should be stable. Plot $z(t)$ for $h = \frac{h_{max}}{2}$. \\
+  \textit{Tip: You should have $h_{max} = 0.01$\si{s}.}
 \end{itemize}
 
 \subsection{Damping.}
   \begin{itemize}
 \item The oscillations should get bigger and bigger. One way to solve this is to use some damping. Let's add a damping force $\vec{D} = -d\vec{v}$. Plot $z(t)$ for $h = \frac{h_{max}}{10}$ and  $d = 0.5$. What's wrong ? Let's know take $d = 0.01$ and plot it.
-  \item Another way to avoid this effect is to use an implcit method. Modify now the method to use backward Euler. Plot $z(t)$ (without damping).
+  \item Another way to avoid this effect is to use an implcit method. Modify now the method to use backward Euler. Plot $z(t)$ (without the damping force).
 \end{itemize}
 
 
@@ -129,7 +131,7 @@ We consider that a spring of stiffness $k$, of length at rest $l_0$ and current 
 \end{wrapfigure}
 
 
-\subsection{Gravity.} Let's consider now that the gravity also applies a force $\vec{G} = - m g \vec{z}$ where $\vec{z}$ is the up direction and $g = 9.81m.s^{-2}$. Plot the position $z(t)$ and see at which length of the spring the system reaches a stable position. Is this corresponding to the theoretical stable position ?
+\subsection{Gravity.} Let's consider now that the gravity also applies a force $\vec{G} = - m g \vec{z}$ where $\vec{z}$ is the up direction and $g = 9.81$\si{m.s^{-2}}. Plot the position $z(t)$ and see at which length of the spring the system reaches a stable position. Is this corresponding to the theoretical stable position ?
 
 \subsection{} \textbf{\emph{Bonus:} A string of springs.} Implement a program enabling to visualize the spring and mass. Implement a string of mass-spring as shown on the figure. What is the length of each spring when the system reaches a stable position under gravity ?\\
 \emph{Note: This may take a lot of time if you want to use Backward Euler.}
