@@ -8,8 +8,8 @@
 %}
 
 \begin{center}
-{\large\textbf{Homework 3: Optimization}}\\
-Due Wednesday,April 3.
+{\large\textbf{Homework 4: Ordinary Differential Equations}}\\
+Due Wednesday, April 10.
 \end{center}
 
 \noindent\makebox[\linewidth]{\rule{\linewidth}{0.6pt}}
@@ -17,7 +17,7 @@ Due Wednesday,April 3.
 \section*{Instructions}
 
 \begin{itemize}
-\item The assignments must be dropped off in the T.A. mail box: Office Building West, 2nd floor, left of the stairs, top-left box, or sent to me by email. The deadline is April 3 at midnight.
+\item The assignments must be dropped off in the T.A. mail box: Office Building West, 2nd floor, left of the stairs, top-left box, or sent to me by email. The deadline is April 10 at midnight.
 \item The assignments may be handwritten or typed. You can code in any programming language. The code itself will not be reviewed. 
 \item The textbook is \emph{Numerical Algorithms} from Justin Solomon.\\ \url{https://people.csail.mit.edu/jsolomon/share/book/numerical_book.pdf}.  
 \end{itemize}
@@ -43,7 +43,7 @@ This ODE integrator is called the \emph{trapezoidal method}.
 
 \subsection{} Despite its higher order of accuracy with maintained stability, the trapezoid method has some drawbacks that make it less popular than backward Euler for large time steps. Let's consider the ratio $R = \frac{y_{k+1}}{y_k}$. What is the value of $R$ when the time step $h \to \infty$. What does it say about the behaviour of the solution obtained with the trapezoidal method ?
 
-\subsection{} \emph{\textbf{Bonus:}} The trapezoidal method is an implicit integrator. Use an Euler step to approximate $F(\vec{y}_{k+1})$ and derive an explicit method. This method is called Heun's method. Analyse the accuracy and stability of this method.
+\subsection{} The trapezoidal method is an implicit integrator. Use an Euler step to approximate $F(\vec{y}_{k+1})$ and derive an explicit method. This method is called Heun's method. Analyse the accuracy of this method. \emph{\textbf{Bonus:}} Analyse the stability of this method.
 
 \section*{Exercise 2: Verlet algorithm \normalsize \textnormal(5 points) \textit{(from the textbook)}}
 
