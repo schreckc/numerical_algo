@@ -1,0 +1,79 @@
+\ProvidesPackage{macrosens}
+
+\RequirePackage[T1]{fontenc}
+\RequirePackage{xspace}
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+\RequirePackage{amsthm}
+\RequirePackage{graphicx}
+\RequirePackage{ifthen}
+\RequirePackage{titlesec}
+
+%\titleformat{ command }[ shape ]{ format }{ label }{ sep }{ before }[ after ]
+%\titleformat{\subsection}[runin]{\large\bfseries}{\thesubsection}{}{}
+\titlespacing{\subsection}{0pt}{*3}{*1}
+
+
+\newenvironment{algo}{
+  \begin{quote}
+  \sffamily
+  \setlength{\parskip}{1em}
+}{
+  \end{quote}
+}
+
+\newenvironment{spec}{
+  \begin{em}
+    \{\begin{tabular}[t]{p{\linewidth}}
+    }{%
+      \}
+    \end{tabular}
+  \end{em}
+}
+
+\newcommand{\answerbox}[1]{%
+  \noindent\fbox{\parbox[c][#1]{\linewidth}{\hspace*{\linewidth}}}\par%
+}
+
+\DeclareMathOperator{\Lire}{Lire}
+\DeclareMathOperator{\Ecrire}{\'Ecrire}
+\DeclareMathOperator{\tantque}{tant que}
+
+\newcommand{\Aff}{\ensuremath{\leftarrow}\xspace}
+\newcommand{\Indent}{\hspace*{4em}}
+\newcommand{\Deref}{\ensuremath{\uparrow}}
+\newcommand{\commentaire}[1]{\emph{\{#1\}}}
+
+\newenvironment{indentation}{
+  \Indent
+  \begin{tabular}[t]{l}
+}{
+  \end{tabular}
+}
+
+%% Macros mathématiques
+
+\providecommand{\tonfirst}{}
+\newcommand{\ton}[1][1]{\renewcommand{\tonfirst}{#1}\tonbis}
+\newcommand{\tonbis}[3][n]{\ensuremath{#2_{\tonfirst}#3\ldots#3#2_{#1}}}
+
+\newcommand{\set}[1]{\ensuremath{\{#1\}}}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+
+\RequirePackage{listings}
+
+\lstdefinelanguage{Algo}
+{%
+  keywords={fonction,action,type,si,alors,sinon,tantque,tant,que,pour,de,a,faire,fin},%
+  otherkeywords={<-},%
+  comment=[n]{\{}{\}},%
+  literate=
+  {<-}{{$\leftarrow$ }}1
+  {->}{{$\rightarrow$ }}1
+  {<>}{{$\neq$ }}1
+  {<=}{{$\leq$ }}1
+  {>=}{{$\geq$ }}1
+  {^}{{$\uparrow$}}1,
+}[keywords,comments]

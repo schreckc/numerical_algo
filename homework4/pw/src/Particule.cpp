@@ -78,8 +78,8 @@ FLOAT Particule::getMass() const {
 
 
 void Particule::oneStep() {
-  FLOAT dt = 0.001;
-  FLOAT damping = 0.0;
+  FLOAT dt = 0.0001;
+  FLOAT damping = 0.001;
   FLOAT gravity = 9.81;
   if (m != 0) {
     forces += m*VEC3(0, 0, -gravity) - damping*vel;

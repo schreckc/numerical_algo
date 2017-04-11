@@ -343,27 +343,27 @@ void Scene::init() {
   Particule *p10 = new Particule(0.01, VEC3(0, 0.2, -0.2), VEC3(0, 0, 0), l_shaders[0]);
   Particule *p11 = new Particule(0.01, VEC3(0, 0.3, -0.2), VEC3(0, 0, 0), l_shaders[0]);
   
-  Spring *s1 = new Spring(0.1, 1, p0, p1, l_shaders[2]);
-  Spring *s2 = new Spring(0.1, 1, p1, p2, l_shaders[2]);
-  Spring *s3 = new Spring(0.1, 1, p2, p3, l_shaders[2]);
+  Spring *s1 = new Spring(0.1, 5, p0, p1, l_shaders[2]);
+  Spring *s2 = new Spring(0.1, 5, p1, p2, l_shaders[2]);
+  Spring *s3 = new Spring(0.1, 5, p2, p3, l_shaders[2]);
   
-  Spring *s4 = new Spring(0.1, 1, p4, p5, l_shaders[2]);
-  Spring *s5 = new Spring(0.1, 1, p5, p6, l_shaders[2]);
-  Spring *s6 = new Spring(0.1, 1, p6, p7, l_shaders[2]);
+  Spring *s4 = new Spring(0.1, 5, p4, p5, l_shaders[2]);
+  Spring *s5 = new Spring(0.1, 5, p5, p6, l_shaders[2]);
+  Spring *s6 = new Spring(0.1, 5, p6, p7, l_shaders[2]);
 
-  Spring *s7 = new Spring(0.1, 1, p8, p9, l_shaders[2]);
-  Spring *s8 = new Spring(0.1, 1, p9, p10, l_shaders[2]);
-  Spring *s9 = new Spring(0.1, 1, p10, p11, l_shaders[2]);
+  Spring *s7 = new Spring(0.1, 5, p8, p9, l_shaders[2]);
+  Spring *s8 = new Spring(0.1, 5, p9, p10, l_shaders[2]);
+  Spring *s9 = new Spring(0.1, 5, p10, p11, l_shaders[2]);
 
-  Spring *s10 = new Spring(0.1, 1, p0, p4, l_shaders[2]);
-  Spring *s11 = new Spring(0.1, 1, p1, p5, l_shaders[2]);
-  Spring *s12 = new Spring(0.1, 1, p2, p6, l_shaders[2]);
-  Spring *s13 = new Spring(0.1, 1, p3, p7, l_shaders[2]);
+  Spring *s10 = new Spring(0.1, 5, p0, p4, l_shaders[2]);
+  Spring *s11 = new Spring(0.1, 5, p1, p5, l_shaders[2]);
+  Spring *s12 = new Spring(0.1, 5, p2, p6, l_shaders[2]);
+  Spring *s13 = new Spring(0.1, 5, p3, p7, l_shaders[2]);
   
-  Spring *s14 = new Spring(0.1, 1, p8, p4, l_shaders[2]);
-  Spring *s15 = new Spring(0.1, 1, p9, p5, l_shaders[2]);
-  Spring *s16 = new Spring(0.1, 1, p10, p6, l_shaders[2]);
-  Spring *s17 = new Spring(0.1, 1, p11, p7, l_shaders[2]);
+  Spring *s14 = new Spring(0.1, 5, p8, p4, l_shaders[2]);
+  Spring *s15 = new Spring(0.1, 5, p9, p5, l_shaders[2]);
+  Spring *s16 = new Spring(0.1, 5, p10, p6, l_shaders[2]);
+  Spring *s17 = new Spring(0.1, 5, p11, p7, l_shaders[2]);
 
   particules.push_back(p0);
   particules.push_back(p1);
@@ -439,7 +439,7 @@ void Scene::init() {
 
   /**/
 
-  /*
+  /*  
   Particule *p0 = new Particule(0.0, VEC3(0, 0, 0), VEC3(0, 0, 0), l_shaders[0]);
   Particule *p1 = new Particule(0.01, VEC3(0, 0.0, -0.1), VEC3(0, 0, 0), l_shaders[0]);
   Spring *s1 = new Spring(0.1, 0.1, p0, p1, l_shaders[2]);
