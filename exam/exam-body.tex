@@ -32,16 +32,20 @@ In this problem we will add one more matrix factorization to our linear algebra 
 
 {\it\textbf{Definition and reminders:}
 \begin{itemize}
-\item Othogonal matrices:
+\item Othogonal matrix: In linear algebra, an orthogonal matrix or real orthogonal matrix ${\bf Q}$ is a square matrix with real entries whose columns and rows are orthogonal unit vectors (i.e., orthonormal vectors), i.e.
+    $${\bf Q}^\top {\bf Q} = {\bf Q \: Q}^\top = {\bf I},$$
+where ${\bf I}$ is the identity matrix.\\
+This leads to the equivalent characterization: a matrix ${\bf Q}$ is orthogonal if its transpose is equal to its inverse:
+    $${\bf Q}^\top = {\bf Q}^{-1}.$$
 \item Positive semidefinite  ??
 \item Symmetric ??
-\item SVD:
+\item SVD: the singular value decomposition of an $m \times n$ real matrix ${\bf A}$ is a factorization of the form  ${\bf U \: \Sigma \: V^\top}$, where {\bf U} is an $m \times m$ orthgonal matrix, ${\bf \Sigma}$ is a $m \times n$ rectangular diagonal matrix with non-negative real numbers on the diagonal, and {\bf V} is an $n \times n$ orthgonal matrix.
 \end{itemize}
 }
 \subsection{} Consider two orthogonal matrices ${\bf U}$ and ${\bf V}$. Show that ${\bf U\:V}$ is an othogonal matrix.
 
 \subsection{} Show that any matrix  ${\bf A} \in R\mathds{R}^{n \times n}$ can be factored ${\bf A} = {\bf W\:P}$, where  ${\bf W}$ is orthogonal and  ${\bf P}$ is symmetric and positive semidefinite. This factorization is known as the polar decomposition.\\
-\textit{Hint: Write the SVD decomposition of ${\bf A} = {\bf U \: \Sigma \: V^\top}$ and show that ${\bf V \: \Sigma \: V}^\top$ is positive semidefinite.}
+\textit{Hint: Write the SVD of ${\bf A} = {\bf U \: \Sigma \: V^\top}$ and show that ${\bf V \: \Sigma \: V}^\top$ is positive semidefinite.}
 
 \subsection{}\label{scheme} The polar decomposition of an invertible ${\bf A} \in R\mathds{R}^{n \times n}$ can be computed using a simple iterative scheme:
 $$ {\bf X}_0 = {\bf A} \text{\hspace{2cm}} {\bf X}_{k+1} = \frac{1}{2}({\bf X}_k + ({\bf X}_k^{-1})^\top).$$
