@@ -16,52 +16,129 @@
 \section{Instructions}
 
 \begin{itemize}
-\item
-\item
+\item This exam lasts two hours.
+\item Books and notes are allowed, but internet access or computational tools are {\em not allowed}
+\item Show all of your work (use a separate sheet of paper if necessary), and clearly highlight your answers.
 \end{itemize}
 
+
+
+%%%%%%%%%%%%%%%%%%%%%
 
 
 \noindent\makebox[\linewidth]{\rule{\linewidth}{0.6pt}}
 
 \section{Exercise 1: log-sum-exp}
 
-ex 2.5 of the numerical book ? (p40)
+Suppose we are given a list of floating point values $x_2, x_2, ..., x_n$. The following quantity, known as their ``log-sum-exp,'' appears in many machine learning algorithms:
+\begin{equation*}
+\ell(x_1,...,x_n)\equiv \ln\left[\sum_{k=1}^n e^{x_k}\right]
+\end{equation*}
+
+\subsection{} The value $p_k\equiv e^{x_k}$ often represents a probability $p_k \in (0,1]$. In this case, what is the range of possible $x_k$'s?
+\vspace{8cm}
+
+\subsection{} Suppose many of the $x_k$'s are negative ($x_k \ll 0$). Explain why evaluating the log-sum-exp formula as written above may cause numerical error in this case.
+\vspace{8cm}
+
+\subsection{} Show that for any $a \in \R$,
+\begin{equation*}
+\ell(x_1,...,x_n) = a + \ln\left[\sum_{k=1}^n e^{x_k-a}\right].
+\end{equation*}
+\vspace{15cm}
+
+\subsection{} To avoid the numerical issues explained above, suggest a value of $a$ that may improve the stability of computing $\ell(x_1,...,x_n)$.
+\pagebreak
+
+
+
+%%%%%%%%%%%%%%%%%%%%%
+
 
 \section{Exercise 2: Polar Decomposition}
 
-In this problem we will add one more matrix factorization to our linear algebra toolbox and derive an algorithm by N. Higham for its computation.  The decomposition  is  used  in  animation  applications  interpolating  between  motions  of  a  rigid  object while projecting out undesirable shearing artifacts.
+In this problem we will add one more matrix factorization to our linear algebra toolbox and derive an algorithm by N. Higham for its computation.  The decomposition  is  used  in  animation  applications for interpolating  between  motions  of  a  rigid  object while projecting out undesirable shearing artifacts.
 
-{\it\textbf{Definition and reminders:}
+{\it\textbf{Definitions and reminders:}
 \begin{itemize}
 \item Othogonal matrix: In linear algebra, an orthogonal matrix or real orthogonal matrix ${\bf Q}$ is a square matrix with real entries whose columns and rows are orthogonal unit vectors (i.e., orthonormal vectors), i.e.
     $${\bf Q}^\top {\bf Q} = {\bf Q \: Q}^\top = {\bf I},$$
 where ${\bf I}$ is the identity matrix.\\
 This leads to the equivalent characterization: a matrix ${\bf Q}$ is orthogonal if its transpose is equal to its inverse:
     $${\bf Q}^\top = {\bf Q}^{-1}.$$
-\item Positive semidefinite  ??
-\item Symmetric ??
+%\item Positive semidefinite  ??
+%\item Symmetric ??
 \item SVD: the singular value decomposition of an $m \times n$ real matrix ${\bf A}$ is a factorization of the form  ${\bf U \: \Sigma \: V^\top}$, where {\bf U} is an $m \times m$ orthgonal matrix, ${\bf \Sigma}$ is a $m \times n$ rectangular diagonal matrix with non-negative real numbers on the diagonal, and {\bf V} is an $n \times n$ orthgonal matrix.
 \end{itemize}
 }
 \subsection{} Consider two orthogonal matrices ${\bf U}$ and ${\bf V}$. Show that ${\bf U\:V}$ is an othogonal matrix.
+\vspace{8cm}
 
-\subsection{} Show that any matrix  ${\bf A} \in R\mathds{R}^{n \times n}$ can be factored ${\bf A} = {\bf W\:P}$, where  ${\bf W}$ is orthogonal and  ${\bf P}$ is symmetric and positive semidefinite. This factorization is known as the polar decomposition.\\
+
+\subsection{} Show that any matrix  ${\bf A} \in \mathds{R}^{n \times n}$ can be factored ${\bf A} = {\bf W\:P}$, where  ${\bf W}$ is orthogonal and  ${\bf P}$ is symmetric and positive semidefinite. This factorization is known as the polar decomposition.\\
 \textit{Hint: Write the SVD of ${\bf A} = {\bf U \: \Sigma \: V^\top}$ and show that ${\bf V \: \Sigma \: V}^\top$ is positive semidefinite.}
+\pagebreak
 
-\subsection{}\label{scheme} The polar decomposition of an invertible ${\bf A} \in R\mathds{R}^{n \times n}$ can be computed using a simple iterative scheme:
+\subsection{}\label{scheme} The polar decomposition of an invertible ${\bf A} \in \mathds{R}^{n \times n}$ can be computed using a simple iterative scheme:
 $$ {\bf X}_0 = {\bf A} \text{\hspace{2cm}} {\bf X}_{k+1} = \frac{1}{2}({\bf X}_k + ({\bf X}_k^{-1})^\top).$$
 
 We use the SVD to write ${\bf A} = {\bf U \: \Sigma \: V^\top}$, and write  ${\bf D}_k = {\bf U}^\top \: {\bf X}_k \: {\bf V}$.\\ Show that ${\bf D}_0 = {\bf \Sigma}$ and ${\bf D}_{k+1} = \frac{1}{2}({\bf D}_k + ({\bf D}_k^{-1})^\top)$.
+\vspace{12cm}
 
 \subsection{}\label{scheme_diag} From Q\ref{scheme}, each ${\bf D}_k$ is diagonal. If $d_{ki}$ is the $i$-th diagonal element of ${\bf D}_k$, show
 $$ d_{(k+1)i} = \frac{1}{2} \left(d_{ki} + \frac{1}{d_{ki}}\right). $$
+\pagebreak
 
 
 \subsection{}\label{conv} Show that $d_{\infty i} = 1$ is a fixed point of the scheme described in Q\ref{scheme_diag}.
+\vspace{12cm}
 
 \subsection{} We assume that $d_{ki} \to d_{\infty i}$ when $k \to \infty$. Show that ${\bf X}_k \to {\bf U \: V}^\top$.
+\pagebreak
 
-\section{Exercise 3: ODE}
+%%%%%%%%%%%%%%%%%%%%%
 
-\section{Exercise 4: PDE}
+\section{Exercise 3: Discretized Ordinary Differential Equations} 
+
+\subsection{} Suppose we wish to simulate a spring by solving the ODE $\sfrac{d^2y}{dt^2} = -y$ with $y(0)=0$ and $\dot{y}=1$. We obtain the three plots of y(t) below by using forward Euler, backward Euler, and symplectic Euler. Label which plot is which.
+\begin{figure}[h!]
+\centering
+\includegraphics[width=\linewidth]{sine.pdf}
+\end{figure}
+\vspace{2cm}
+
+\subsection{}\label{sine} Suppose we wish to solve the ODE $\sfrac{dy}{dt}=-\sin y$ numerically. For time step $h > 0$, write the
+implicit backward Euler equation for approximating $y_{k+1}$ at $t = (k + 1)h$ given $y_k$ at $t = kh$.
+\vspace{7cm}
+
+\subsection{} Write the Newton iteration for solving the equation from Q\ref{sine} for $y_{k+1}$.
+\pagebreak
+
+%%%%%%%%%%%%%%%%%%%%%
+
+\section{Exercise 4: Discretized Partial Differential Equations} You are given an energy function defined by:
+\begin{equation*}
+E[\vec{u}]\equiv \|G \vec{u}\|_2^2
+\end{equation*}
+where $\vec{u}=(u_1,u_2,...,u_n)^T$ is an $n$-dimensional vector, and $G$ is an $n\times n$ matrix. Let's say that $\vec{u}$ is the discretization of a continuous function $u(x)$ by sampling it on a regular grid, and $G\vec{u}$ approximates the gradient of this function $\frac{du}{dx}$ using forward finite differences.
+
+\subsection{} \label{minimizer}What is the exact minimizer of $E[\vec{u}]$ in terms of $G$ and $\vec{u}$?
+\vspace{10cm}
+
+\subsection{} \label{descent} Let's say we want to use a gradient-descent algorithm to gradually minimize this energy. Write the algorithm for one iteration of gradient descent.
+\pagebreak
+
+\subsection{} If $G\vec{u}$ approximates $\frac{du}{dx}$, then what is the differential equation approximated by Q\ref{minimizer}?
+\vspace{5cm}
+
+\subsection{} What is the differential equation approximated by Q\ref{descent}?
+\vspace{5cm}
+
+\subsection{} If we extend this idea to two-dimensions, where $\vec{u}$ represents the pixel intensities in a grey-scale image, what qualitative effects will the algorithm Q\ref{descent} make to an input image $\vec{u}_\text{init}$?
+\vspace{5cm}
+
+\subsection{} If we use a different energy
+\begin{equation*}
+E_\text{neg}[\vec{u}]\equiv -\|G \vec{u}\|_2^2 ,
+\end{equation*}
+what qualitative effects will an iteration of gradient descent make to an input image $\vec{u}_\text{init}$?
